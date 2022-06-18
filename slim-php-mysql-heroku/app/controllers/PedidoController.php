@@ -184,8 +184,8 @@ class PedidoController implements IApiUsable
             $id = $args['IdPedido'];
             $body = json_decode(file_get_contents("php://input"), true);
             $estado = $body['Estado'];
-            $pedido = App\Models\Pedido::find($id);
-            $listaDetalles = App\Models\PedidoDetalle::all();
+            $pedido = Pedido::find($id);
+            $listaDetalles = PedidoDetalle::all();
 
             if ($pedido != null && count($listaDetalles) > 0) {
                 $pedido->Estado = $estado;
@@ -247,7 +247,7 @@ class PedidoController implements IApiUsable
     {
         $id = $args['IdPedido'];
 
-        $pedido = App\Models\Pedido::find($id);
+        $pedido = Pedido::find($id);
 
         if ($pedido != null) {
             $payload = json_encode($pedido);
